@@ -1,0 +1,40 @@
+<mat-toolbar class="max-w-7xl mx-auto border-x justify-between">
+    <a routerLink="/home">Code with FM</a>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon matBadgeColor="warn" [matBadge]="1">
+            shopping_cart
+        </mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <div class="p-3 divide-y divide-solid">
+            <div class="pb-3 flex justify-between">
+                <span class="mr-16">1 Item(s)</span>
+                <a routerLink="cart">View cart</a>
+            </div>
+            <div class="py-3">
+                <div class="flex justify-between font-light mb-2">
+                    Headset x 1
+                    <span>{{"150" | currency}}</span>
+                </div>
+            </div>
+            <div class="flex justify-between py-3 font-light">
+                Total:
+                <span class="font-bold"> {{"150" | currency }}</span>
+            </div>
+            <div class="flex justify-between pt-3">
+                <button class="w-9 h-9 rounded-full bg-rose-600 
+                flex items-center justify-center">
+                    <mat-icon>
+                        remove_shopping_cart
+                    </mat-icon>
+                </button>
+                <button routerLink="cart" class="w-9 h-9 rounded-full bg-green-600 
+                    flex items-center justify-center">
+                    <mat-icon>
+                        remove_shopping_cart
+                    </mat-icon>
+                </button>
+            </div>
+        </div>
+    </mat-menu>
+</mat-toolbar>
