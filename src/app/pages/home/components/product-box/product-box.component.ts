@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Product } from 'src/app/models/product.modet';
+import { Product } from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-product-box',
@@ -7,14 +7,7 @@ import { Product } from 'src/app/models/product.modet';
 })
 export class ProductBoxComponent {
   @Input() fullWidthMode = false;
-  product: Product | undefined = {
-    id: 1,
-    title: 'Sneakers',
-    description: '',
-    image: 'https://via.placeholder.com/150',
-    price: 100,
-    category: 'shoes'
-  };
+  @Input() product?: Product;
   @Output() addToCart = new EventEmitter<Product>();
 
   onAddToCart = () => {

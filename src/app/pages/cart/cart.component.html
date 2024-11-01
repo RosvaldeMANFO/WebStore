@@ -1,4 +1,8 @@
-<mat-card class="max-w-7xl mx-auto" *ngIf="cart.items.length">
+<mat-drawer-container 
+[autosize]="true"
+class="min-h-full max-w-7xl mx-auto border-x"
+>
+<mat-card *ngIf="cart.items.length">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full">
         <ng-container matColumnDef="product">
             <th mat-header-cell *matHeaderCellDef>Product</th>
@@ -73,6 +77,7 @@
         <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
     </table>
 </mat-card>
+
 <mat-card *ngIf="!cart.items.length" class="p-7">
     <p>
         Your cart is empty.
@@ -81,3 +86,4 @@
         </button>
     </p>
 </mat-card>
+</mat-drawer-container>

@@ -10,14 +10,13 @@
         <div class="flex items-center gap-2">
             <div>
                 <button mat-button [matMenuTriggerFor]="menu" class="flex flex-row-reverse gap-2">
-                    Show {{itemsShowCount === 0 ? 'all' : itemsShowCount}} items
+                    Show {{ itemsShowCount}} items
                     <mat-icon>expand_more</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item (click)="onItemsUpdated(10)">10 items</button>
                     <button mat-menu-item (click)="onItemsUpdated(20)">20 items</button>
                     <button mat-menu-item (click)="onItemsUpdated(30)">30 items</button>
-                    <button mat-menu-item (click)="onItemsUpdated(00)">All items</button>
                 </mat-menu>
             </div>
             <button (click)="onColumnsCountUpdated(1)">
