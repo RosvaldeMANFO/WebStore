@@ -5,7 +5,7 @@ import { CartService } from './services/cart.service';
 @Component({
   selector: 'app-root',
   template: `
-    <app-header [cart]="cart"></app-header>
+    <app-header [cart]="cart" class="sticky top-0 z-50"></app-header>
     <router-outlet></router-outlet>
   `,
   styles: []
