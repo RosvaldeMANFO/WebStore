@@ -57,4 +57,8 @@ export class CartComponent implements OnInit {
   onClearCart = () => {
     this._cartService.clearCart();
   }
+
+  onCheckout = () => {
+    this._cartService.checkout();
+  }
 }

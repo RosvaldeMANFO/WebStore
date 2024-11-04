@@ -2,14 +2,20 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
 import { Cart, CartItem } from '../models/cart.model';
+import { HttpClient } from '@angular/common/http';
+import { loadStripe } from '@stripe/stripe-js';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   cart = new BehaviorSubject<Cart>({ items: []})
+  publicKey = "pk_test_51QGKQ7P4gTAfokfvvscs3qBuuGNFCJXMeI1CYtt1AybTtp9XCH1aqFb2JgJULkSR8ktSCngSZrCQSE0boWDMZh1k00zSMnvYqT"
 
-  constructor(private _snackBar: MatSnackBar) { }
+  constructor(
+    private readonly _snackBar: MatSnackBar,
+    private readonly httpClient: HttpClient
+  ) { }
 
   addToCart = (item: CartItem) =>{
     const items = [...this.cart.value.items];
@@ -63,6 +69,15 @@ export class CartService {
     this.cart.next({ items: [] });
     this._snackBar.open('Cart cleared', 'Ok', {
       duration: 3000,
+    });
+  }
+
+  checkout = () => {
+    this.httpClient.post('http://localhost:4242/checkout', {
+      items: this.cart.value.items
+    }).subscribe( async (res: any) => {
+      let stripe = await loadStripe(this.publicKey);
+      stripe?.redirectToCheckout({ sessionId: res.id });
     });
   }
 }
